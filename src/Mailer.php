@@ -105,8 +105,7 @@ class Mailer extends BaseMailer
                     $message->getAttachments()
                 );
             }
-            //TODO: handle error codes and log stuff
-            return isset($sendResult['ErrorCode']) ? ($sendResult['ErrorCode'] == 0) : false;
+            return $sendResult->getErrorCode() === 0;
         } catch (PostmarkException $e) {
             throw $e;
         }
